@@ -61,7 +61,7 @@ export const shared = {
     mediator_routes: {},
   },
   listeners: {
-    'https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-mediator/0.1/routes_list': (share, msg) => {
+    'https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-mediator/0.1/routes': (share, msg) => {
       share.mediator_routes = msg.results;
     }
   }
@@ -113,7 +113,7 @@ export default {
     },
     load: function() {
       let msg = {
-        "@type": "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-mediator/0.1/routes_list_get",
+        "@type": "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-mediator/0.1/routes-get",
       };
       this.send_message(msg);
     }
