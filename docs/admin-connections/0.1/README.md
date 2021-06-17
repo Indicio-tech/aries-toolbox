@@ -13,6 +13,7 @@ Connections Admin Protocol
 - [delete](#delete)
 - [deleted](#deleted)
 - [receive-invitation](#receive-invitation)
+- [connected](#connected)
 
 ## Message Definitions
 
@@ -152,7 +153,8 @@ Create a new connection by receiving an invitation.
 {
   "@type": "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/receive-invitation",
   "invitation": "https://example.com?c_i=..."
-  "auto_accept": true
+  "auto_accept": true,
+  "mediation_id": "cbf76a1c-aba9-4675-af64-a65ef116f359"
 }
 ```
 
@@ -160,3 +162,26 @@ Create a new connection by receiving an invitation.
 
 `auto_accept` (Optional): Whether the agent should automatically accept the
 given invitation or not.
+
+`mediation_id` (Optional): Identifier for mediator to use when accepting this
+invitation.
+
+--------------------------------------------------------------------------------
+
+### Connected
+
+Notification of connection completed.
+
+This message shares the same structure as [`connection`](#connection)
+
+```jsonc
+{
+  "@type": "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/connected",
+  "connection_id": "c08fdc8b-2edc-499a-9f71-5c5960d6abc1",
+  "label": "Bob",
+  "my_did": "8zZRWsViMg1gc9GjcL6MFu",
+  "state": "active",
+  "their_did": "KHKqmY24wF6oHJ29iSNxir",
+  "raw_repr": {...},
+}
+```

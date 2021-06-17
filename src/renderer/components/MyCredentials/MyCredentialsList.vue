@@ -14,10 +14,10 @@
     <el-collapse v-model="expanded_items">
       <ul class="list">
         <el-collapse-item
-          v-for="credential in receivedStateCredentials"
+          v-for="credential in credentials"
           v-bind:title="credential_title(credential)"
-          :name="credential.credential_exchange_id"
-          :key="credential.credential_exchange_id">
+          :name="credential.cred_def_id"
+          :key="credential.cred_def_id">
           <el-row>
             <div>
               <vue-json-pretty
@@ -70,7 +70,7 @@
             <el-option
               v-for="connection in connections"
               :key="connection.connection_id"
-              :label="connection.their_label"
+              :label="connection.label"
               :value="connection.connection_id">
             </el-option>
           </el-select>
@@ -191,7 +191,7 @@ export default {
       if (!cred.connection) {
         connection_name = '[deleted]';
       } else {
-        connection_name = cred.connection.their_label;
+        connection_name = cred.connection.label;
       }
       return `${split[2]} v${split[3]} received from ${connection_name}`;
     }

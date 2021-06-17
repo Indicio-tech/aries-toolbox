@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from 'electron'
-
+import store from "../renderer/store"
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -20,11 +20,14 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     height: 600,
     useContentSize: true,
-    width: 350//900
+    width: 350,//900
+    webPreferences: {
+      nodeIntegration: true
+    }
   });
 
   mainWindow.loadURL(winURL);
-  //mainWindow.webContents.openDevTools(); //to enable 
+  //mainWindow.webContents.openDevTools(); //to enable
 
   mainWindow.on('closed', () => {
     mainWindow = null

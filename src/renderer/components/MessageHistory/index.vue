@@ -1,5 +1,10 @@
 <template>
   <el-row>
+    <div>
+      Endpoint: {{get_connection().service.serviceEndpoint}}<br/>
+      Use Return Route: {{get_connection().use_return_route}}
+
+    </div>
     <el-button type="secondary" @click="clear_history">Clear</el-button>
     <div class="message-display" v-for="m in message_history.slice().reverse()" :key="m.msg['@id']">
       <i>{{m.direction}}</i>
@@ -15,6 +20,7 @@
 import message_bus from '@/message_bus.js';
 import share from '@/share.js';
 import VueJsonPretty from 'vue-json-pretty';
+import 'vue-json-pretty/lib/styles.css';
 
 export const metadata = {
   menu: {
@@ -43,6 +49,7 @@ export const shared = {
 
 export default {
   name: 'message-history',
+  inject: ['get_connection'],
   mixins: [
     message_bus(),
     share({
